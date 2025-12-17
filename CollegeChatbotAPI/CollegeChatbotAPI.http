@@ -1,0 +1,6 @@
+@CollegeChatbotAPI_HostAddress = http://localhost:5190
+
+GET {{CollegeChatbotAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
