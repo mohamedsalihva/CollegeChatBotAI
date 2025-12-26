@@ -10,6 +10,8 @@ builder.Services.AddScoped<IAIService, OllamaAIService>();
 
 builder.Services.AddScoped<ChatService>();
 
+builder.Services.AddScoped<DatabaseService>();
+
 var app = builder.Build();
 
 app.UseRouting();
