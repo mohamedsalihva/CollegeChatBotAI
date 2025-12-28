@@ -13,9 +13,7 @@ namespace CollegeChatbotAPI.Services
                 ?? throw new Exception("Connection string not found");
         }
 
-        // =========================
-        // ALL COURSES
-        // =========================
+        //All courses
         public async Task<List<string>> GetAllCourseNames()
         {
             var courses = new List<string>();
@@ -36,9 +34,7 @@ namespace CollegeChatbotAPI.Services
             return courses;
         }
 
-        // =========================
-        // SINGLE COURSE MATCH
-        // =========================
+        //single course details
         public async Task<Course?> GetCourseFromMessage(string msg)
         {
             using SqlConnection connection = new SqlConnection(_connectionString);
@@ -80,10 +76,7 @@ namespace CollegeChatbotAPI.Services
 
             return null;
         }
-
-        // =========================
-        // FAQ
-        // =========================
+        //Matched FAQs
         public async Task<List<(int FaqId, string Category)>> GetMatchedFaqs(string msg)
         {
             var result = new List<(int, string)>();

@@ -27,9 +27,8 @@ namespace CollegeChatbotAPI.Services
 
             string msg = userMessage.ToLower();
 
-            // =========================
-            // 1️⃣ ALL COURSES (HIGHEST PRIORITY)
-            // =========================
+            //all courses
+
             if (IsAllCoursesQuery(msg))
             {
                 var courses = await _dbService.GetAllCourseNames();
@@ -41,18 +40,16 @@ namespace CollegeChatbotAPI.Services
                 };
             }
 
-            // =========================
-            // 2️⃣ SINGLE COURSE DETAILS
-            // =========================
+            // single course
+
             var course = await _dbService.GetCourseFromMessage(msg);
             if (course != null)
             {
                 return BuildCourseResponse(course, msg);
             }
 
-            // =========================
-            // 3️⃣ FAQ
-            // =========================
+            //faqs
+
             var matchedFaqs = await _dbService.GetMatchedFaqs(msg);
 
             if (matchedFaqs.Count == 1)
@@ -78,9 +75,8 @@ namespace CollegeChatbotAPI.Services
                 };
             }
 
-            // =========================
-            // 4️⃣ AI FALLBACK (LAST)
-            // =========================
+            //ai fallback
+
             string prompt = $@"
 You are a college enquiry assistant.
 Answer only college related questions.
@@ -98,9 +94,7 @@ User question:
             };
         }
 
-        // =========================
-        // HELPERS
-        // =========================
+        =====================
 
         private bool IsAllCoursesQuery(string msg)
         {
