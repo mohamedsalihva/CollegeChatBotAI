@@ -48,6 +48,7 @@ namespace CollegeChatbotAPI.Services
                 return BuildCourseResponse(course, msg);
             }
 
+
             //faqs
 
             var matchedFaqs = await _dbService.GetMatchedFaqs(msg);
@@ -75,6 +76,7 @@ namespace CollegeChatbotAPI.Services
                 };
             }
 
+
             //ai fallback
 
             string prompt = $@"
@@ -94,7 +96,7 @@ User question:
             };
         }
 
-        =====================
+     
 
         private bool IsAllCoursesQuery(string msg)
         {
@@ -102,7 +104,9 @@ User question:
                 || msg.Contains("available courses")
                 || msg.Contains("what courses")
                 || msg.Contains("courses offered")
-                || msg.Contains("list courses");
+                || msg.Contains("list courses")
+                || msg.Equals("courses")
+                || msg.Equals("course list");
         }
 
         private ChatResponse BuildCourseResponse(Course course, string msg)
