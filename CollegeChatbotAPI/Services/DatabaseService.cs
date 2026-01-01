@@ -41,22 +41,20 @@ namespace CollegeChatbotAPI.Services
             await connection.OpenAsync();
 
             string query = @"
-                SELECT TOP 1 CourseName, Eligibility, Duration, Fees
-                FROM Courses
-                WHERE 
-                    LOWER(@msg) LIKE '%' + LOWER(CourseName) + '%'
-                    OR (
-                        CourseName LIKE '%(%'
-                        AND CourseName LIKE '%)%'
-                        AND LOWER(@msg) LIKE '%' + LOWER(
-                            SUBSTRING(
-                                CourseName,
-                                CHARINDEX('(', CourseName) + 1,
-                                CHARINDEX(')', CourseName) - CHARINDEX('(', CourseName) - 1
-                            )
-                        ) + '%'
-                    );
-            ";
+        SELECT TOP 1 CourseName, Eligibility, Duration, Fees
+        FROM Courses
+        WHERE
+            LOWER(@msg) LIKE '%' + LOWER(CourseName) + '%'
+            OR
+            (
+                Aliases IS NOT NULL
+                AND EXISTS (
+                    SELECT 1
+                    FROM STRING_SPLIT(Aliases, ',')
+                    WHERE LOWER(@msg) LIKE '%' + LOWER(value) + '%'
+                )
+            );
+    ";
 
             using SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@msg", msg);
@@ -76,6 +74,8 @@ namespace CollegeChatbotAPI.Services
 
             return null;
         }
+
+        
         //Matched FAQs
         public async Task<List<(int FaqId, string Category)>> GetMatchedFaqs(string msg)
         {

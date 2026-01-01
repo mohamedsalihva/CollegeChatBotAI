@@ -25,7 +25,7 @@ namespace CollegeChatbotAPI.Services
                 };
             }
 
-            string msg = userMessage.ToLower();
+            string msg = userMessage.ToLower().Replace(".", "").Replace(" ", "");
 
             //all courses
 
