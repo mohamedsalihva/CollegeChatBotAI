@@ -1,4 +1,4 @@
-﻿using CollegeChatbotAPI.DTOs;
+﻿using CollegeChatbotAPI.Models;
 using Microsoft.Data.SqlClient;
 
 namespace CollegeChatbotAPI.Services
@@ -75,7 +75,7 @@ namespace CollegeChatbotAPI.Services
             return null;
         }
 
-        
+       
         //Matched FAQs
         public async Task<List<(int FaqId, string Category)>> GetMatchedFaqs(string msg)
         {

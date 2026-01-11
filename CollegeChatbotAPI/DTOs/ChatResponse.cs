@@ -1,4 +1,4 @@
-﻿namespace CollegeChatbotAPI.Models
+﻿namespace CollegeChatbotAPI.DTOs
 {
     public class ChatResponse
     {

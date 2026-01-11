@@ -1,4 +1,4 @@
-﻿namespace CollegeChatbotAPI.DTOs
+﻿namespace CollegeChatbotAPI.Models
 {
     public class Course
     {

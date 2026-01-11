@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using CollegeChatbotAPI.Services;
+﻿using Microsoft.AspNetCore.Mvc; 
 using CollegeChatbotAPI.DTOs;
+using CollegeChatbotAPI.Services;
+
 
 namespace CollegeChatbotAPI.Controllers
 {
